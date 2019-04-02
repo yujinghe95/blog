@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="db.properties"/>
+
+    <settings>
+        <!--当返回行的所有列都是空时，MyBatis默认返回null-->
+        <setting name="returnInstanceForEmptyRow" value="true"/>
+        <!--&lt;!&ndash;延迟加载的设置，是否开启延迟加载，是否把所有关联的项直接加载&ndash;&gt;-->
+        <!--<setting name="lazyLoadingEnabled" value="false"/>-->
+        <!--<setting name="aggressiveLazyLoading" value="true"/>-->
+        <!--&lt;!&ndash;二级缓存是否开启&ndash;&gt;-->
+        <!--<setting name="cacheEnabled" value="true"/>-->
+    </settings>
+
+    <typeAliases>
+        <package name="blog.entity"/>
+    </typeAliases>
+
+    <!--&lt;!&ndash;下面的配置是单独使用mybatis测试用的，整合到spring之后直接注释掉&ndash;&gt;-->
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--&lt;!&ndash;使用了 JDBC 的提交和回滚设置，它依赖于从数据源得到的连接来管理事务作用域&ndash;&gt;-->
+            <!--<transactionManager type="JDBC"/>-->
+            <!--&lt;!&ndash;使用数据池，复用实例&ndash;&gt;-->
+            <!--<dataSource type="POOLED">-->
+                <!--&lt;!&ndash;<property name="driver" value="com.mysql.jdbc.Driver"/>&ndash;&gt;-->
+                <!--<property name="driver" value="${jdbc.driver}"/>-->
+                <!--<property name="url" value="${jdbc.url}"/>-->
+                <!--<property name="username" value="${jdbc.username}"/>-->
+                <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+
+    <!--<mappers>-->
+        <!--<package name="blog.mapper"/>-->
+    <!--</mappers>-->
+</configuration>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="blog.mapper.CommentMapper" >
+  <resultMap id="BaseResultMap" type="blog.entity.Comment" >
+    <id column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="comment_article" property="commentArticle" jdbcType="INTEGER" />
+    <result column="comment_author" property="commentAuthor" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="blog.entity.Comment" extends="BaseResultMap" >
+    <result column="comment_content" property="commentContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comment_id, comment_article, comment_author
+  </sql>
+  <sql id="Blob_Column_List" >
+    comment_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="blog.entity.Comment" >
+    insert into comment (comment_id, comment_article, comment_author, 
+      comment_content)
+    values (#{commentId,jdbcType=INTEGER}, #{commentArticle,jdbcType=INTEGER}, #{commentAuthor,jdbcType=VARCHAR}, 
+      #{commentContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="blog.entity.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="commentArticle != null" >
+        comment_article,
+      </if>
+      <if test="commentAuthor != null" >
+        comment_author,
+      </if>
+      <if test="commentContent != null" >
+        comment_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="commentArticle != null" >
+        #{commentArticle,jdbcType=INTEGER},
+      </if>
+      <if test="commentAuthor != null" >
+        #{commentAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        #{commentContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="blog.entity.Comment" >
+    update comment
+    <set >
+      <if test="commentArticle != null" >
+        comment_article = #{commentArticle,jdbcType=INTEGER},
+      </if>
+      <if test="commentAuthor != null" >
+        comment_author = #{commentAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        comment_content = #{commentContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="blog.entity.Comment" >
+    update comment
+    set comment_article = #{commentArticle,jdbcType=INTEGER},
+      comment_author = #{commentAuthor,jdbcType=VARCHAR},
+      comment_content = #{commentContent,jdbcType=LONGVARCHAR}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="blog.entity.Comment" >
+    update comment
+    set comment_article = #{commentArticle,jdbcType=INTEGER},
+      comment_author = #{commentAuthor,jdbcType=VARCHAR}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectCommentsByArticleId" parameterType="int" resultMap="ResultMapWithBLOBs">
+    select * from comment where comment.comment_article=#{value}
+  </select>
+</mapper>

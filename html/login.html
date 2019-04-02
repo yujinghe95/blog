@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--meta data-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--css-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--js-->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+        <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+
+    <link rel="stylesheet" href="dashboard.css"/>
+    <script src="dashboard.js"></script>
+
+    <style type="text/css">
+        .round_icon{
+            width: 100px;
+            height: 100px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+    </style>
+
+    <title>文章内容</title>
+</head>
+<body>
+<nav class="navbar navbar-dark fixed-top bg-dark p-0 ">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-center " href="#">Blog</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">登陆</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item mx-auto">
+                        <img src="pili1.png" class="round_icon img-thumbnail" >
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#" style="margin-top: 10px">
+                            <h4 class="text-muted">景舟</h4>
+                        </a>
+                    </li>
+                    <li class="nav-item text-center" >
+                        <form class="form-inline" action="#" method="get">
+                            <div class="input-group mx-auto">
+                                <input class="form-control" type="text" placeholder="搜索一下" name="bookName" style="width: 120px;"/>
+                                <span class="input-group-append">
+                    <button class="btn" type="submit">🔍</button>
+                </span>
+                            </div>
+                        </form>
+                    </li>
+                    <table class="table table-hover text-center">
+                        <tbody>
+                        <tr>
+                            <td><li class="nav-item text-center">
+                                <a class="nav-link" href="#">
+                                    <h6 class="text-info">所有文章</h6>
+                                </a>
+                            </li></td>
+                        </tr>
+                        <tr>
+                            <td><li class="nav-item text-center">
+                                <a class="nav-link" href="#">
+                                    <h6 class="text-info">文章分类</h6>
+                                </a>
+                            </li></td>
+                        </tr>
+                        <tr>
+                            <td><li class="nav-item text-center">
+                                <a class="nav-link" href="#">
+                                    <h6 class="text-info">关于我</h6>
+                                </a>
+                            </li></td>
+                        </tr>
+                        <tr>
+                            <td><li class="nav-item text-center">
+                                <a class="nav-link" href="#">
+                                    <h6 class="text-info">写文章</h6>
+                                </a>
+                            </li></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-8 ml-sm-auto col-lg-10 px-4">
+            <div class="container" style="margin-top: 5%">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h2>管理员登陆</h2>
+                    </div>
+                </div>
+                <div class="card" style="margin: 25%;margin-top: 0%">
+                    <div class="card-body" >
+                        <h4 class="card-title text-center">登陆系统</h4>
+                        <form id="signupForm">
+                            <div class="form-group">
+                                <label for="username">用户名:</label>
+                                <input name="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>成功!</strong> 指定操作成功提示信息。
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">密码:</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="请输入密码">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-left:40% ">登陆</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $().ready(function() {
+        $("#signupForm").validate({
+            rules: {
+                username: {
+                    required: true,
+                    minlength: 2,
+                    maxlength:10
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+            },
+            messages: {
+                username: {
+                    required: "请输入用户名",
+                    minlength: "用户名必需由两个字母组成",
+                    maxlength: "用户名不能超过10个字符"
+                },
+                password: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于 5 个字母"
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
